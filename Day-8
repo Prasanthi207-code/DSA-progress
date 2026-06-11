@@ -1,0 +1,189 @@
+1.You are given an integer array arr[]. You need to find the maximum sum of a subarray (containing at least one element) in the array arr[].
+Platform:GeeksForGeeks
+SOURCE CODE: class Solution {
+    int maxSubarraySum(int[] arr) {
+  int maxsum=arr[0];
+   int tempsum=arr[0];
+   for(int i=1;i<arr.length;i++){
+       tempsum=Math.max(arr[i],tempsum+arr[i]);
+      maxsum=Math.max(maxsum,tempsum);
+   }
+        return maxsum;
+    }
+}
+Link : https://www.geeksforgeeks.org/problems/kadanes-algorithm-1587115620/1
+2.Given an array arr[] containing only 0s, 1s, and 2s. Sort the array in ascending order.
+Note: You need to solve this problem without utilizing the built-in sort function.
+Platform:GeeksForGeeks
+SOURCE CODE: class Solution {
+    public void sort012(int[] arr) {
+      int zero=0,one=0,two=0;  // code here
+        for(int i=0;i<arr.length;i++){
+                 if(arr[i]==0)zero++;
+                 else if (arr[i]==1)one++;
+                 else two++;
+        }
+        int i=0;
+        while(zero-->0)arr[i++]=0;
+        while(one-->0)arr[i++]=1;
+        while(two-->0)arr[i++]=2;
+        } 
+    }
+
+Link : https://www.geeksforgeeks.org/problems/sort-an-array-of-0s-1s-and-2s4231/1
+3.Given an array arr[] containing integers and an integer k, your task is to find the length of the longest subarray where the sum of its elements is equal to the given value k. If there is no subarray with sum equal to k, return 0.
+Platform:GeeksForGeeks
+SOURCE CODE:  class Solution {
+    public int longestSubarray(int[] arr, int k) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+       int maxlen=0; int sum=0;// code here
+       for(int i=0;i<arr.length;i++){  
+            
+               sum+=arr[i];
+               if(sum==k){
+                   maxlen=i+1;}
+                   if(map.containsKey(sum-k)){
+                  maxlen=Math.max(maxlen,i-map.get(sum-k));
+               }
+               if(!map.containsKey(sum)){
+                   map.put(sum,i);
+               }
+           }
+       return maxlen;
+    }
+}
+Link : https://www.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1
+4.Given an unsorted array arr[]. Find the count of elements less than or equal to the given element x.
+Platform:GeeksForGeeks
+SOURCE CODE: class Solution {
+    public int countOfElements(int x, List<Integer> arr) {
+        // code here
+        int count=0;
+        for(int i=0;i<arr.size();i++){
+            if(arr.get(i)<=x) count++;
+        } 
+  return count;  }
+}
+Link : https://www.geeksforgeeks.org/problems/count-of-smaller-elements5947/1
+5.You are given an integer n. You need to convert all zeroes of n to 5.
+Platform:GeeksForGeeks
+SOURCE CODE: class Solution {
+    int convertfive(int num) {
+      if(num==0)return 5;
+       int rev=0;   // Your code here
+       while(num>0){
+         int digit=num%10;
+         if(digit==0){
+             digit=5;
+         }
+         rev=rev*10+digit;
+    
+         num=num/10;
+       }
+       int ans=0;
+       while(rev>0){
+           ans=ans*10+rev%10;
+           rev=rev/10;
+       }
+    return ans;    } 
+}
+Link : https://www.geeksforgeeks.org/problems/replace-all-0s-with-5/1
+6. You are given an array arr(0-based index) and two positive integer index and val. You need to insert an val at given index.
+Platform:GeeksForGeeks
+SOURCE CODE : import java.util.*;
+
+class Solution {
+    public void insertAtIndex(ArrayList<Integer> arr, int index, int val) {
+        
+            arr.add(index,val);
+    }
+}
+
+Link : https://www.geeksforgeeks.org/problems/array-insert-at-index/1
+7.Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+Platform:Leetcode
+SOURCE CODE :class Solution {
+    public int missingNumber(int[] nums) {
+        int n=nums.length;
+         int sum=0;
+         int result=0;
+       for(int i=0;i<n;i++){
+        sum+=nums[i];
+       }
+       if(n>0){
+        result=n*(n+1)/2 - sum;
+        return result;
+       }
+    return 0;   }
+}
+Link : https://leetcode.com/problems/missing-number/
+8.Given an integer array nums, return the third distinct maximum number in this array. If the third maximum does not exist, return the maximum number.
+Platform:Leetcode
+SOURCE CODE :class Solution {
+    public int thirdMax(int[] nums) {
+        TreeSet<Integer> s = new TreeSet<>();
+        for(int n:nums) { s.add(n);} 
+        if(s.size()<3) return s.last();
+        s.pollLast();
+       s.pollLast();
+       return s.last(); }
+}
+Link : https://leetcode.com/problems/third-maximum-number/
+9.Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must be unique and you may return the result in any order.
+Platform:Leetcode
+SOURCE CODE :class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        TreeSet<Integer> result =new TreeSet<>();
+         Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        int i = 0, j = 0;
+       
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] == nums2[j]) {
+                result.add(nums1[i]);
+                i++; j++;
+            } else if (nums1[i] < nums2[j]) {
+                i++;
+            } else {
+                j++;
+            }
+        }
+        return result.stream().mapToInt(k -> k).toArray();
+    }
+  }
+Link : https://leetcode.com/problems/intersection-of-two-arrays/
+10.Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+Platform:Leetcode
+SOURCE CODE :class Solution {
+    public boolean containsDuplicate(int[] nums) {
+      int  n=nums.length;
+        Set<Integer> s=new HashSet<>();
+        for(int num:nums)
+        { 
+            s.add(num);
+            }
+            if(s.size()==n){return false;} return true;
+    }
+}
+Link : https://leetcode.com/problems/contains-duplicate/
+11.You are given two strings s and t.
+String t is generated by random shuffling string s and then add one more letter at a random position.
+Return the letter that was added to t.
+Platform:Leetcode
+SOURCE CODE :class Solution {
+    public char findTheDifference(String s, String t) {
+       int count[]=new int[26];
+       for(char c:s.toCharArray())
+       {
+        count[c-'a']++;
+        }
+        for(char c:t.toCharArray())
+        {
+            count[c-'a']--;
+        if(count[c-'a']<0){
+             return c;
+        }}
+        return '\0';
+    }
+}
+Link : https://leetcode.com/problems/find-the-difference/
