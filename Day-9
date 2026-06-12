@@ -1,0 +1,187 @@
+1.Given the head of a linked list and an integer k, return the kth node from the end of the linked list. If k is greater than the number of nodes in the list, return -1.
+Platform:GeeksForGeeks
+SOURCE CODE: class Node
+{
+    int data;
+    Node next;
+
+    Node(int d) {
+        data = d;
+        next = null;
+    }
+}
+class Solution {
+    int getKthFromLast(Node head, int k) {
+       Node temp=head;   int count=0;
+      Node prev=temp;
+      while(temp!=null){
+            
+           temp=temp.next;
+           
+           count++;
+       }
+          
+      if(k>count){
+          return -1;
+          
+      }
+      temp=head;
+      for(int i=0;i<count-k;i++){
+          temp=temp.next;
+      }
+      return temp.data;  }
+Link : https://www.geeksforgeeks.org/problems/nth-node-from-end-of-linked-list/1
+2.Given the head of a sorted singly linked list, remove all duplicate nodes so that each element appears only once. The resulting linked list should remain sorted.
+Note: Try to solve the problem without using extra space.
+Platform:GeeksForGeeks
+SOURCE CODE: class Node {
+    int data;
+    Node next;
+
+    Node(int d) {
+      data = d;
+      next = null;
+    }
+}
+
+class Solution {
+    Node removeDuplicates(Node head) {
+     Node temp=head;
+     while(temp!=null && temp.next!=null){
+         if(temp.data==temp.next.data){
+             temp.next=temp.next.next;
+         } 
+         else{temp=temp.next;}
+     } 
+    return head;    
+    }
+}
+Link : https://www.geeksforgeeks.org/problems/remove-duplicate-element-from-sorted-linked-list/1
+3.You are given the head of a singly linked list, you have to left rotate the linked list k times. Return the head of the modified linked list.
+Platform:GeeksForGeeks
+SOURCE CODE: class Node {
+    int data;
+    Node next;
+
+    Node(int d){
+        data=d;
+        next=null;}}
+
+class Solution {
+    public Node rotate(Node head, int k) {
+       if(head==null||head.next==null||k==0)
+           return head;
+           Node tail=head;
+           int len =1;
+           while(tail.next!=null){
+               tail=tail.next;
+               len++;
+           
+       }
+       k=k%len;
+       if(k==0)return head;  
+       tail.next=head;
+        Node temp=head;
+       for(int i=1;i<k;i++){
+            temp=temp.next;
+        }
+        Node newhead=temp.next;
+        temp.next=null;
+        return newhead;
+    }
+}
+Link : https://www.geeksforgeeks.org/problems/rotate-a-linked-list/1
+4.Given the head of a linked list where nodes can contain values 0s, 1s, and 2s only. Your task is to rearrange the list so that all 0s appear at the beginning, followed by all 1s, and all 2s are placed at the end.
+Platform:GeeksForGeeks
+SOURCE CODE: class Node {
+    int data;
+    Node next;
+
+    Node(int d)
+    {
+        data = d;
+        next = null;
+    }
+}
+class Solution {
+    public Node segregate(Node head) {
+         Node temp=head;
+    
+      int zero=0,one=0,two=0;  // code here
+      while(temp!=null){
+                 if(temp.data==0)zero++;
+                 else if (temp.data==1)one++;
+                 else two++;
+                 temp=temp.next;
+        }
+        temp=head;
+        while(zero-->0){temp.data=0;temp=temp.next;}
+        while(one-->0){temp.data=1;temp=temp.next;}
+        while(two-->0){temp.data=2;temp=temp.next;}
+        
+ return head;
+    }}
+Link : https://www.geeksforgeeks.org/problems/given-a-linked-list-of-0s-1s-and-2s-sort-it/1
+5.Given the head of a linked list and an integer val, remove all the nodes of the linked list that has Node.val == val, and return the new head.
+Platform:Leetcode
+SOURCE CODE: class Solution {
+    public ListNode removeElements(ListNode head, int val) {
+        while(head!=null&& head.val==val){ head=head.next;}
+         ListNode temp=head;
+        while(temp!=null&& temp.next!=null){  
+          
+            if(temp.next.val==val){
+                temp.next=temp.next.next;
+            }
+            else { temp=temp.next;}
+        } 
+  return head;  }
+}
+Link : https://leetcode.com/problems/remove-linked-list-elements/
+6.Given the head of a singly linked list, reverse the list, and return the reversed list.
+Platform:Leetcode
+SOURCE CODE:class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode temp=head;ListNode prev=null;ListNode next=null;
+        if(head==null){return head; }
+        while(temp!=null){
+             next=temp.next;
+             temp.next=prev;
+             prev=temp;
+             temp=next;
+        }head=prev;
+   return head; }
+}
+Link : https://leetcode.com/problems/reverse-linked-list/
+7.Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+Platform:Leetcode
+SOURCE CODE: lass Solution {
+    public boolean isPalindrome(ListNode head) {
+        ListNode fast=head; ListNode slow=head;
+        while(fast!=null&& fast.next!=null){
+         slow=slow.next;
+         fast=fast.next.next;
+        }
+         ListNode temp=slow; ListNode prev=null; ListNode next;
+         while(temp!=null){
+            next=temp.next;
+            temp.next=prev;
+            prev=temp;
+            temp=next;
+         } 
+         while(prev!=null){
+            if(head.val!=prev.val){
+                return false;
+            }head=head.next;
+            prev=prev.next;
+         } return true;
+    }
+}
+Link : https://leetcode.com/problems/palindrome-linked-list/
+ 
+
+
+
+
+
+}
