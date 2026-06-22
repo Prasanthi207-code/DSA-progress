@@ -1,0 +1,112 @@
+1.Given a number n, print a diamond-shaped star pattern with 2n rows, where the number of stars first increases and then decreases to form the diamond.
+Platform : GeeksForGeeks
+SOURCECODE : import java.util.Scanner;
+
+class GFG {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+   for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= n - i; j++) {
+        System.out.print(" ");
+    }
+
+    for (int j = 1; j <=i; j++) {
+        System.out.print("* ");
+    }
+
+    System.out.println();
+}
+
+for (int i = n; i >= 1; i--) {
+    for (int j =1; j<=n-i; j++) {
+        System.out.print(" ");
+    }
+
+    for (int j = 1; j <= i; j++) {
+        System.out.print("* ");
+    }
+
+    System.out.println();
+}
+    }
+}
+Link : https://www.geeksforgeeks.org/problems/pattern/1
+2.Given a sorted array arr[] and an integer x, find the index (0-based) of the smallest element in arr[] that is greater than or equal to x. This element is called the ceil of x. If such an element does not exist, return -1.
+Platform : GeeksForGeeks
+SOURCECODE : class Solution {
+    public int findCeil(int[] arr, int x) {
+        int low = 0;
+        int high = arr.length - 1;
+        int ans = -1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (arr[mid] >= x) {
+               ans=mid;
+                high = mid - 1;
+            } 
+            else {
+             
+                low = mid + 1;
+            }
+        }
+
+        return ans;
+    }
+}
+Link : https://www.geeksforgeeks.org/problems/ceil-in-a-sorted-array/1
+3.Given an unsorted array arr[] of integers and an integer x, find the floor and ceiling of x in arr[].
+Floor of x is the largest element which is smaller than or equal to x. Floor of x doesn’t exist if x is smaller than smallest element of arr[].
+Ceil of x is the smallest element which is greater than or equal to x. Ceil of x doesn’t exist if x is greater than greatest element of arr[].
+Return an array of integers denoting the [floor, ceil]. Return -1 for floor or ceiling if the floor or ceiling is not present.
+  Platform : GeeksForGeeks
+SOURCECODE :  class Solution {
+    public int[] getFloorAndCeil(int x, int[] arr) {
+        int a[]=new int[2];
+         Arrays.sort(arr);
+          int floor=-1;
+          int ceil=-1;
+        for(int num:arr){
+            if(num<=x){
+                if(floor==-1||num>floor){
+                    floor=num;
+                }
+            }
+            if(num>=x){
+                if(ceil==-1||num<ceil){
+                    ceil=num;
+                }
+            }
+        } return new int[]{floor,ceil};
+    }
+}
+Link : https://www.geeksforgeeks.org/problems/ceil-the-floor2802/1
+4.Given a number n, find the first digit of the number.
+Platform : GeeksForGeeks
+SOURCECODE : class Solution {
+    public static int firstDigit(int n) {
+   while(n>=10){
+            n=n/10;}
+            return n;
+}
+}
+Link : https://www.geeksforgeeks.org/problems/first-digit-of-a-number/1
+5.Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
+Platform : Leetcode
+SOURCECODE :class Solution {
+    public boolean uniqueOccurrences(int[] arr) {
+     HashMap<Integer,Integer>l=new HashMap<>();
+      for(int i:arr){
+        l.put(i,l.getOrDefault(i,0)+1);
+      }  
+      HashSet<Integer>s=new HashSet<>();
+      for(int i:l.values()){
+        if(s.contains(i)){
+            return false;
+        }s.add(i);
+      }return true;
+    }
+}
+Link : https://leetcode.com/problems/unique-number-of-occurrences/
