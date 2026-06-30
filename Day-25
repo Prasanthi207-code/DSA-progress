@@ -1,0 +1,195 @@
+1.Given a string s, return the length of the string.
+Platform : GeeksForGeeks
+SOURCE CODE : class Solution {
+    public static int lengthString(String s) {
+         return s.length();
+    }
+}
+Link : https://www.geeksforgeeks.org/problems/length-of-string/1
+2.You are given an array arr of numbers. Return the sum of all the elements except the first and last elements.
+Platform : GeeksForGeeks
+SOURCE CODE : class Solution {
+    int sumExceptFirstLast(int[] arr) {
+      int sum=0;int n=arr.length;
+      for(int i=1;i<n-1;i++){
+          sum+=arr[i];
+      }
+      return sum;
+    }
+}
+Link : https://www.geeksforgeeks.org/problems/max-length-chain/1
+3.Given an array integer arr[] , representing the values of coins arranged in a row.
+Platform : GeeksForGeeks
+SOURCE CODE :class Solution {
+    public int coin(int[] arr) {
+        int i = 0;
+        int j = arr.length - 1;
+
+        while (i < j) {
+
+            // Player 1
+            if (arr[i] >= arr[j])
+                i++;
+            else
+                j--;
+
+            if (i >= j)
+                break;
+
+            // Player 2
+            if (arr[i] >= arr[j])
+                i++;
+            else
+                j--;
+        }
+
+        return arr[i];
+    }
+}
+Link : https://www.geeksforgeeks.org/problems/last-coin-in-a-game-of-alternates/1
+4.Given an array arr[] of only 0's and 1's. The array is sorted in descending order. Find the count of all the 0's.
+    Platform : GeeksForGeeks
+    SOURCE CODE : class Solution {
+    public int countZeroes(int[] arr) {
+        int count=0;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==0) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+    Link : https://www.geeksforgeeks.org/problems/count-the-zeros2550--141153/1
+   
+    5.Given an array arr and an element k. The task is to find the count of elements in the array that appear more than n/k times and n is length of arr.
+Platform : GeeksForGeeks
+SOURCE CODE : class Solution {
+    public int countElements(int[] arr, int k) {
+        int n = arr.length;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int num : arr) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+        int count = 0;
+        for (int freq : map.values()) {
+            if (freq > n / k) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+    https://www.geeksforgeeks.org/problems/count-element-occurences/1
+    6.Given a positive integer n, find if it is a power of 3. A number is said to be a power of 3 if it can be expressed as 3x for some non-negative integer x.
+Platform : GeeksForGeeks
+SOURCE CODE : class Solution {
+    public boolean isPowerOfThree(int n) {
+        if (n <= 0) return false;
+        while (n % 3 == 0) {
+            n /= 3;
+        }
+        return n == 1;
+    }
+}
+    Link : https://www.geeksforgeeks.org/problems/check-a-integer-is-power-of-3-or-not3850/1
+ 7.Given two positive integers x and y, determine if y is a power of x. If y is a power of x, return true. Otherwise, return false.
+        Platform : GeeksForGeeks
+        SOURCE CODE : class Solution {
+        public boolean isPowerOf(int x, int y) {
+            if (y == 1) return true;
+            if (x == 1) return false;
+            if (y % x != 0) return false;
+            return isPowerOf(x, y / x);
+        }
+    }
+Link : https://www.geeksforgeeks.org/problems/check-if-a-number-is-power-of-another-number5442/1
+8.Given a number n, check if n is power of 4 or not.
+     Platform : GeeksForGeeks
+        SOURCE CODE : class Solution {
+        public boolean isPowerOfFour(int n) {       
+            if (n <= 0) return false;
+            while (n % 4 == 0) {
+                n /= 4;
+            }
+            return n == 1;
+        }
+            Link : https://www.geeksforgeeks.org/problems/power-of-four/1
+9.Given the root of a binary tree and an integer targetSum, return the number of paths where the sum of the values along the path equals targetSum.
+The path does not need to start or end at the root or a leaf, but it must go downwards (i.e., traveling only from parent nodes to child nodes).
+ Platform : LeetCode
+        SOURCE CODE :/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+
+    public int pathSum(TreeNode root, int targetSum) {
+        if (root == null)
+            return 0;
+
+        return count(root, targetSum)
+                + pathSum(root.left, targetSum)
+                + pathSum(root.right, targetSum);
+    }
+
+    private int count(TreeNode root, long target) {
+        if (root == null)
+            return 0;
+
+        int ans = 0;
+
+        if (root.val == target)
+            ans++;
+
+        ans += count(root.left, target - root.val);
+        ans += count(root.right, target - root.val);
+
+        return ans;
+    }
+}
+    Link : https://leetcode.com/problems/path-sum-iii/?envType=study-plan-v2&envId=leetcode-75
+    10.Two strings are considered close if you can attain one from the other using the following operations:
+
+Operation 1: Swap any two existing characters.
+For example, abcde -> aecdb
+Operation 2: Transform every occurrence of one existing character into another existing character, and do the same with the other character.
+For example, aacabb -> bbcbaa (all a's turn into b's, and all b's turn into a's)
+ Platform : LeetCode
+        SOURCE CODE : class Solution {
+    public boolean closeStrings(String word1, String word2) {
+        if (word1.length() != word2.length())
+            return false;
+
+        int[] f1 = new int[26];
+        int[] f2 = new int[26];
+
+        for (char c : word1.toCharArray())
+            f1[c - 'a']++;
+
+        for (char c : word2.toCharArray())
+            f2[c - 'a']++;
+
+        for (int i = 0; i < 26; i++) {
+            if ((f1[i] == 0) != (f2[i] == 0))
+                return false;
+        }
+
+        Arrays.sort(f1);
+        Arrays.sort(f2);
+
+        return Arrays.equals(f1, f2);
+    }
+}
+    Link : https://leetcode.com/problems/determine-if-two-strings-are-close/?envType=study-plan-v2&envId=leetcode-75
