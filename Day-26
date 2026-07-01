@@ -1,0 +1,113 @@
+1.You are given the head of a singly linked list and an integer x. Delete the xth node (1-based indexing) from the singly linked list.
+Platform : GeeksForGeeks 
+SOURCE CODE : /*
+class Node
+{
+    int data;
+    Node next;
+
+    Node(int d)
+    {
+        this.data = d;
+        this.next = null;
+    }
+}
+*/
+class Solution {
+    Node deleteNode(Node head, int x) {
+       if(x==1) return head.next;
+        Node temp=head;
+        for(int i=1;i<x-1;i++){
+            temp=temp.next;
+        }
+        temp.next=temp.next.next;
+     return head;}
+   
+}
+Link : https://www.geeksforgeeks.org/problems/delete-a-node-in-single-linked-list/1
+2.Given a linked list with the head node and a key, the task is to check if the key is present in the linked list or not. Return true if key is present, else return false.
+Platform : GeeksForGeeks 
+SOURCE CODE : /*
+  class Node {
+   int data;
+    Node next;
+
+    Node(int d)  { data = d;  next = null; }
+}
+*/
+class Solution {
+    public boolean searchKey(Node head, int key) {
+      if(head==null) return false;
+      Node temp=head;
+    while(temp!=null)
+        {
+            if(temp.data==key) 
+                return true;
+            temp=temp.next;
+         
+    }return false;
+}}
+Link : https://www.geeksforgeeks.org/problems/search-in-linked-list-1664434326/1
+3.Given a singly linked list, delete the middle of the linked list.
+Platform : GeeksForGeeks 
+SOURCE CODE : /* Node Structure
+class Node {
+    int data;
+    Node next;
+    Node(int x) {
+        data = x;
+        next = null;
+    }
+} */
+
+class Solution {
+    public Node deleteMid(Node head) {
+       if(head==null||head.next==null) return null;
+       Node fast=head;
+       Node slow=head;
+       Node prev=null;
+       while(fast!=null && fast.next!=null){
+           prev=slow;
+           slow=slow.next;
+           fast=fast.next.next;
+       }
+       prev.next=slow.next;
+       return head;
+    }
+}
+Link : https://www.geeksforgeeks.org/problems/delete-middle-of-linked-list/1
+4. We are playing the Guess Game. The game is as follows:
+I pick a number from 1 to n. You have to guess which number I picked (the number I picked stays the same throughout the game).
+Every time you guess wrong, I will tell you whether the number I picked is higher or lower than your guess.
+Platform : LeetCode
+SOURCE CODE : /** 
+ * Forward declaration of guess API.
+ * @param  num   your guess
+ * @return 	     -1 if num is higher than the picked number
+ *			      1 if num is lower than the picked number
+ *               otherwise return 0
+ * int guess(int num);
+ */
+
+public class Solution extends GuessGame {
+    public int guessNumber(int n) {
+        int low = 1;
+        int high = n;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            int res = guess(mid);
+
+            if (res == 0)
+                return mid;
+            else if (res == -1)
+                high = mid - 1;
+            else
+                low = mid + 1;
+        }
+
+        return -1;
+    }
+}
+Link : https://leetcode.com/problems/guess-number-higher-or-lower/?envType=study-plan-v2&envId=leetcode-75
